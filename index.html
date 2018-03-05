@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>The Psychic Game</title>
+    
+</head>
+<body>
+    
+    <div id ="Psychic">
+        <h1>The Psychic</h1>
+
+            <p>What letter am I thinking of?</p>
+            <p>Wins: <span id="wins"></span></p>
+            <p>Losses: <span id="losses"></span></p>
+            <p>Guesses Left: <span id="guessesLeft"></span></p>
+            <p>Guessed Letter: <span id="guessedLetters"></span></p>
+
+    </div>
+    
+    <!-- // Guess what letter I am thinking of?
+
+    // Wins:
+    // Losses:
+    // Guesses Left:
+    // Your guesses so far: -->
+
+    <script type="text/javascript">
+
+    var options = ['a','b','c','d','e','f','g','h','i','h','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+
+        var wins = 0;
+        var losses = 0;
+        var guessesLeft = 10;
+        var guessedLetters =[];
+        var letterToGuess = null;
+        var gameOver = false;
+
+
+        var computerGuess = options[Math.floor(Math.random()*options.length)];
+        function resetFunc () {
+            var playAgain = confirm("Do you want to play again?")
+
+            if (playAgain) { 
+                computerGuess = options[Math.floor(Math.random()*options.length)];
+                guessedLetters = [];
+
+                guessesLeft = 10
+            }
+           
+        }
+
+    document.onkeyup = function(event) {
+        console.log (computerGuess)
+       
+            var userGuess = event.key.toLowerCase()
+          
+                    if (userGuess === computerGuess){
+                        wins++;
+                        alert("You Win!");
+                        document.getElementById("wins").textContent = wins;
+                        resetFunc();
+                
+                    } else {
+                        guessesLeft--;
+                        alert("You're not psychic");
+                        document.getElementById("guessesLeft").textContent = guessesLeft;
+                        guessedLetters.push(userGuess)
+                        document.getElementById("guessedLetters").innerHTML = guessedLetters;
+                        
+                    }
+                    if (guessesLeft === 0){
+                        losses++;
+                        document.getElementById("losses").textContent = losses;
+                        alert("Game over please refresh webpage");
+                        resetFunc();
+                    }
+                  
+    }   
+    
+    </script>
+    
+</body>
+</html>
+
+<!-- // if (event.keyCode >= 65 && event.keyCode <= 90){ -->
+
+<!-- guessesLeft = guessesLeft * 10;
+guessesLeft *= 10 -->
+
+<!-- guessesLeft = guessesLeft -1;
+guessesLeft -=1; -->
+<!-- 
+// for (var i = 0; i < options.length; i++){
+    // if (userGuess === options[i]){ -->
